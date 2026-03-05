@@ -187,7 +187,7 @@ void pre_auton() {
   }
 }
 
-/**
+/*
  * Auton function, which runs the selected auton. Case 0 is the default,
  * and will run in the brain screen goes untouched during preauton. Replace
  * driveTest(), for example, with your own auton function you created in
@@ -197,8 +197,6 @@ void pre_auton() {
 void autonomous(void) {
   autoStarted = true;
   
-  
-  // chassis.driveToPose(10, 0, 0);
   autonSkills();
 }
 
