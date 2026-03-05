@@ -1,3 +1,5 @@
+// Gregory ARCADE Controls
+
 #include "vex.h"
 #include "auton.h"
 
