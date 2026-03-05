@@ -1,4 +1,4 @@
-/// COBY TANK BRANCH ///
+/// Coby TANK Branch ///
 
 #include "vex.h"
 #include "auton.h"
