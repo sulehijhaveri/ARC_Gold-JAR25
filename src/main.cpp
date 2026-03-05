@@ -1,4 +1,4 @@
-// Gregory ARCADE Controls
+// Gregory ARCADE Branch
 
 #include "vex.h"
 #include "auton.h"
