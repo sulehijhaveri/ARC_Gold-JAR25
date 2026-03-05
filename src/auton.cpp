@@ -130,6 +130,9 @@ void holonomicOdomTest(){
 
 
 
-void autonSkills() {
-  
+void autonSkills() {  // 24 Inch Version
+  chassis.setCoordinates(75.592, 12.992, 255);
+  //chassis.turnToPoint(-20, -22);
+  chassis.driveToPoint(104.529,15);
+  chassis.turnToAngle(178);
 }
