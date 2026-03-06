@@ -130,9 +130,93 @@ void holonomicOdomTest(){
 
 
 
+
+// ARC Gold Specific Functions && Variables
+
+/******************************************************************
+ * Function: autonSkills()
+ * 
+ * Purpose: Autonomous Skills Route
+*******************************************************************/
 void autonSkills() {  // 15 Inch Version
+  // Returns Odometry Constants
+  odom_constants();
+
+  // Drive to Matchload
   chassis.setCoordinates(75.592, 12.992, 255);
-  //chassis.turnToPoint(-20, -22);
-  chassis.driveToPoint(104.529,15);
-  chassis.turnToAngle(178);
+  chassis.driveToPoint(103.583, 17.992);
+  chassis.turnToAngle(178.5);
+  wait(0.15, seconds);
+
+  // Red Matchload (+3 Red || +3 Blue)
+  matchLoader.set(true);
+  // intake.spin(forward, 12.00, volt);
+  chassis.driveDistance(8.84);
+  wait(1.75, seconds);
+
+  // Drive to get Sideblocks (+2 Blue)
+  chassis.driveDistance(-4.95);
+  wait(0.1, seconds);
+  matchLoader.set(false);
+  chassis.driveDistance(-6.00);
+  chassis.turnToAngle(88.5);
+  wait(0.15, seconds);
+  chassis.driveDistance(13.46);
+  wait(0.55, seconds);
+
+  // Drive to Score in CLOSEST Long Goal
+  chassis.driveDistance(-13.53);
+  chassis.turnToAngle(-1.5);
+  wait(0.15, seconds);
+  chassis.driveDistance(13.55);
+  // toggleLift();
+  // outTake();
+  // moveSlot();
+  // outTake();
+  // moveSlot();
+  // outTake();
+  // wait(0.1, seconds);
+  // toggleLift();
+
+  // Drive to Intake BLUE Side Blocks
+  chassis.driveDistance(-7);
+  chassis.leftSwingToAngle(-178.5);
+  wait(0.15, seconds);
+  chassis.driveToPoint(117.294, 98.575);
+  chassis.leftSwingToAngle(88.5);
+  wait(0.15, seconds);
+  chassis.driveDistance(8.5);
+  wait(0.55, seconds);
+
+  // Blue Matchload
+  chassis.driveDistance(-13.43);
+  chassis.turnToAngle(-1.5);
+  wait(0.15, seconds);
+  matchLoader.set(true);
+  chassis.driveDistance(10.55);
+  wait(1.75, seconds);
+  chassis.driveDistance(-10.95);
+  matchLoader.set(false);
+  chassis.turnToAngle(178.5);
+  chassis.driveDistance(11.45);
+  chassis.turnToAngle(178.5);
+  wait(0.15, seconds);
+  // toggleLift();
+  // outTake();
+  // moveSlot();
+  // outTake();
+  // moveSlot();
+  // outTake();
+  // wait(0.1, seconds);
+  // toggleLift();
+
+  // Drive to Park Zone && Park
+  chassis.driveDistance(-7);
+  chassis.leftSwingToAngle(1.5);
+  wait(0.15, seconds);
+  chassis.driveToPoint(84.488, 15.578);
+  chassis.turnToAngle(91.5);
+  chassis.driveDistance(-18.25);
+
+  // End
 }

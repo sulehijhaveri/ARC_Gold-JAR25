@@ -41,9 +41,6 @@ void outTake();
 void rotateRevolver();
 void usercontrol();
 
-bool armUp = false;
-bool isInAuton = false;
-
 Drive chassis(
 
 //Pick your drive setup from the list below:
@@ -129,6 +126,9 @@ PORT4,
 int currentAutonSelection = 6;
 bool autoStarted = false;
 
+bool armUp = false;
+bool isInAuton = false;
+
 /**
  * Function before autonomous. It prints the current auton number on the screen
  * and tapping the screen cycles the selected auton by 1. Add anything else you
@@ -141,50 +141,50 @@ void pre_auton() {
   vexcodeInit();
   defaultConstants();
 
-  while (!autoStarted){
+  // while (!autoStarted){
 
-    Brain.Screen.clearScreen();
-    Brain.Screen.printAt(1, 10, "ARC_Gold Template v0.0.1");
-    Brain.Screen.printAt(1, 40, "Battery Percentage: ");
-    Brain.Screen.printAt(1, 60, "%d", Brain.Battery.capacity());
-    Brain.Screen.printAt(15, 20, "Chassis Heading Reading: ");
-    Brain.Screen.printAt(15, 60, "%f", chassis.getAbsoluteHeading());
-    Brain.Screen.printAt(30, 20, "Selected Auton:");
-    switch(currentAutonSelection){
+  //   Brain.Screen.clearScreen();
+  //   Brain.Screen.printAt(1, 10, "ARC_Gold Template v0.0.1");
+  //   Brain.Screen.printAt(1, 40, "Battery Percentage: ");
+  //   Brain.Screen.printAt(1, 60, "%d", Brain.Battery.capacity());
+  //   Brain.Screen.printAt(15, 20, "Chassis Heading Reading: ");
+  //   Brain.Screen.printAt(15, 60, "%f", chassis.getAbsoluteHeading());
+  //   Brain.Screen.printAt(30, 20, "Selected Auton:");
+  //   switch(currentAutonSelection){
       
-      case 0:
-        Brain.Screen.printAt(7, 50, "Auton 1");
-        break;
-      case 1:
-        Brain.Screen.printAt(7, 50, "Auton 2");
-        break;
-      case 2:
-        Brain.Screen.printAt(7, 50, "Auton 3");
-        break;
-      case 3:
-        Brain.Screen.printAt(7, 50, "Auton 4");
-        break;
-      case 4:
-        Brain.Screen.printAt(7, 50, "Auton 5");
-        break;
-      case 5:
-        Brain.Screen.printAt(7, 50, "Auton 6");
-        break;
-      case 6:
-        Brain.Screen.printAt(7, 50, "Auton 7");
-        break;
-      case 7:
-        Brain.Screen.printAt(7, 50, "Auton 8");
-        break;
-    }
-    if (Brain.Screen.pressing()){
-      while (Brain.Screen.pressing()) {}
-      currentAutonSelection++;
-    } else if (currentAutonSelection == 8){
-      currentAutonSelection = 0;
-    }
-    task::sleep(10);
-  }
+  //     case 0:
+  //       Brain.Screen.printAt(7, 50, "Auton 1");
+  //       break;
+  //     case 1:
+  //       Brain.Screen.printAt(7, 50, "Auton 2");
+  //       break;
+  //     case 2:
+  //       Brain.Screen.printAt(7, 50, "Auton 3");
+  //       break;
+  //     case 3:
+  //       Brain.Screen.printAt(7, 50, "Auton 4");
+  //       break;
+  //     case 4:
+  //       Brain.Screen.printAt(7, 50, "Auton 5");
+  //       break;
+  //     case 5:
+  //       Brain.Screen.printAt(7, 50, "Auton 6");
+  //       break;
+  //     case 6:
+  //       Brain.Screen.printAt(7, 50, "Auton 7");
+  //       break;
+  //     case 7:
+  //       Brain.Screen.printAt(7, 50, "Auton 8");
+  //       break;
+  //   }
+  //   if (Brain.Screen.pressing()){
+  //     while (Brain.Screen.pressing()) {}
+  //     currentAutonSelection++;
+  //   } else if (currentAutonSelection == 8){
+  //     currentAutonSelection = 0;
+  //   }
+  //   task::sleep(10);
+  // }
 }
 
 /*
@@ -196,9 +196,7 @@ void pre_auton() {
 
 void autonomous(void) {
   autoStarted = true;
-  
-  
-  // chassis.driveToPose(10, 0, 0);
+
   autonSkills();
 }
 
@@ -211,6 +209,7 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+
 // Additional Driver Control Functions Here //
 
 /******************************************************************
@@ -218,7 +217,6 @@ void autonomous(void) {
  * 
  * Purpose: Manual toggle for Lift
 *******************************************************************/
-
 void toggleLift() {
   liftL.set(!liftL.value());
   liftR.set(!liftR.value());
@@ -239,24 +237,6 @@ void outTake() {
     outtake.spinFor(reverse, 0.75, sec);
     outtake.stop(hold);
     armUp = false;
-  }
-}
-
-
-/******************************************************************
- * Function: forwardIntake()
- * 
- * Purpose: Rotates Revolver by ONE Slot
-*******************************************************************/
-void forwardIntake() {
-  if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
-    intake.spin(forward, 12, volt);
-  }
-}
-
-void reverseIntake() {
-  if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
-    intake.spin(reverse, 12, volt);
   }
 }
 
@@ -307,6 +287,23 @@ void unloadAll() {
     outTake();
     moveSlot();
     waitUntil(!revolver.isSpinning());
+  }
+}
+
+/******************************************************************
+ * Function: forwardIntake()
+ * 
+ * Purpose: Rotates Revolver by ONE Slot
+*******************************************************************/
+void forwardIntake() {
+  if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
+    intake.spin(forward, 12, volt);
+  }
+}
+
+void reverseIntake() {
+  if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
+    intake.spin(reverse, 12, volt);
   }
 }
 
@@ -452,7 +449,7 @@ void usercontrol() {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
+  Competition.drivercontrol(odomTest);
 
   // Run the pre-autonomous function.
   pre_auton();

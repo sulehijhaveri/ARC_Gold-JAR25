@@ -15,4 +15,13 @@ void odomTest();
 void tankOdomTest();
 void holonomicOdomTest();
 
-void autonSkills();
+
+// ARC Gold Specific Functions && Variables
+extern bool armUp;
+extern bool isInAuton;
+
+extern void toggleLift();
+extern void outTake();
+extern void moveSlot();
+extern void unloadAll();
+extern void autonSkills();
