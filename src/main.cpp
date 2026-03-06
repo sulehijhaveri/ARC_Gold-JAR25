@@ -222,6 +222,16 @@ void toggleLift() {
   liftR.set(!liftR.value());
 }
 
+/***************************************************************
+ * Function: goalScooper() 
+ * 
+ * Purpose: Scoop goal
+ ****************************************************************/
+
+void goalScooper() {
+  goalScoop.set(!goalScoop.value());
+}
+
 
 /******************************************************************
  * Function: outTake()
@@ -385,6 +395,8 @@ void usercontrol() {
 
   Controller1.ButtonLeft.pressed(fixGeneva);
 
+  Controller1.ButtonA.pressed(goalScooper);
+
   bool liftToggle = false;
   bool matchLoadToggle = false;
 
@@ -422,6 +434,7 @@ void usercontrol() {
     } else if (!Controller1.ButtonRight.pressing() && liftToggle) {
       liftToggle = false;
     }
+
 
     // Matchload Toggle (Rise || Fall)
     if (Controller1.ButtonL2.pressing() && !matchLoadToggle) {

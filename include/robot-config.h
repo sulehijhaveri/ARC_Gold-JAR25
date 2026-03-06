@@ -36,9 +36,10 @@ extern led liftR;
 extern led liftL;
 extern led matchLoader;
 extern led extendo;
+extern led goalScoop;
 
 extern distance backDistanceSensor;
 extern distance middleDistanceSensor;
 extern distance frontDistanceSensor;
 
-void  vexcodeInit(void);
+void  vexcodeInit();

@@ -48,6 +48,7 @@ led liftR = led(Brain.ThreeWirePort.A);
 led liftL = led(Brain.ThreeWirePort.B);
 led matchLoader = led(Brain.ThreeWirePort.C);
 led extendo = led(Brain.ThreeWirePort.G);
+led goalScoop = led(Brain.ThreeWirePort.D);
 
 /////////////////////////////////////
 
